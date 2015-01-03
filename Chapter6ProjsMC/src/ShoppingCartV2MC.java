@@ -3,7 +3,11 @@
  * @author Matthew Clayton
  * @version January 3, 2015
  * @assign.ment Shopping Cart
- * @descrip.tion
+ * @descrip.tion This class represents a shopping cart,
+ * containing varying items of different names and prices 
+ * associated with ItemV2MC objects. This class allows the user 
+ * to continue adding items as he or she sees fit, and then prints 
+ * a subtotal when the user elects to be done.
  * 
  * 
  */
@@ -16,14 +20,14 @@ public class ShoppingCartV2MC {
 	double subtotal;
 	ItemV2MC[] cart;
 
-	public ShoppingCartV2MC() {
+	public ShoppingCartV2MC() { // constructor for class ShoppingCartV2MC
 		capacity = 10;
 		subtotal = 0.00;
 		cart = new ItemV2MC[capacity];
 	}
 
 	public static void main(String[] args) {
-		ShoppingCartV2MC shopCart = new ShoppingCartV2MC();
+		ShoppingCartV2MC shopCart = new ShoppingCartV2MC(); // new object
 
 		// declare variables for ItemV2MC object assignments
 		String curItemName;
@@ -39,37 +43,25 @@ public class ShoppingCartV2MC {
 		String keepGoing; // whether or not to keep shopping
 
 		System.out.println("Welcome to shopping.");
-		System.out
-				.println("For each item, please input the name, price in dollars, and quantity on separate lines.\n");
+		System.out.println("For each item, please input the name, "
+				+ "price in dollars, and quantity on separate lines.\n");
 
 		while (keepShopping == true) {
 			// get current item values
 			System.out.print("Please give the name of the item: ");
 			curItemName = scan.nextLine();
-			// for (int i = 0; i < 5; i++) {
-			System.out
-					.print("Please enter the item price in the format xx.xx: $");
-			// try { // test for proper input
-			curItemPrice = scan.nextDouble();
-			// break; // exit loop at proper input
-			// } catch (InputMismatchException e) {
-			// System.out.println("Price entries must be numerical.");
-			// }
-			// }
-			// for (int i = 0; i < 5; i++) {
-				System.out
-						.print("Please enter a whole number value for the quantity of the item: ");
-			// try { // test for proper input
-					curItemQuantity = scan.nextInt();
-			// break; // exit loop at proper input
-			// } catch (InputMismatchException e) {
-			// System.out.println("Quantity entries must be integers.");
-			// }
-			// }
 
-			for (int i = cartLocation; i < curItemQuantity + cartStart; i++) { // for
-				// each
-				// item
+			System.out.print("Please enter the item price "
+					+ "in the format xx.xx: $");
+
+			curItemPrice = scan.nextDouble();
+
+			System.out.print("Please enter a whole number value "
+					+ "for the quantity of the item: ");
+			curItemQuantity = scan.nextInt();
+
+			// loop through each individual item
+			for (int i = cartLocation; i < curItemQuantity + cartStart; i++) {
 				try { // check for space in cart
 					shopCart.cart[cartLocation] = new ItemV2MC(curItemName,
 							curItemPrice);
@@ -78,15 +70,12 @@ public class ShoppingCartV2MC {
 					shopCart.cart[cartLocation] = new ItemV2MC(curItemName,
 							curItemPrice);
 				}
-				// shopCart.subtotal += curItemPrice; // add individual item
-				// price
-				// to subtotal
 				cartLocation++; // advance to next position in cart
 			}
 
-			cartStart = cartLocation;
-			System.out
-					.print("If you would like to quit shopping, enter 'q', otherwise enter any other key to continue: ");
+			cartStart = cartLocation; // start position for loop adding items
+			System.out.print("If you would like to quit shopping, "
+					+ "enter 'q', otherwise enter any other key to continue: ");
 			keepGoing = scan.nextLine();
 			keepGoing = scan.nextLine();
 			if (keepGoing.equalsIgnoreCase("q")) // if wants to quit
@@ -104,11 +93,9 @@ public class ShoppingCartV2MC {
 				break;
 			}
 		}
-
 		// print price to nearest whole cent
 		System.out.printf("\nPlease pay $" + "%.2f", shopCart.subtotal);
 	}
-
 	// ---------------------------------------------------------
 	// Increases the capacity of the shopping cart by 3
 	// ---------------------------------------------------------
