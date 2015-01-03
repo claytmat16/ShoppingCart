@@ -9,7 +9,6 @@
  */
 
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class ShoppingCartV2MC {
@@ -39,35 +38,34 @@ public class ShoppingCartV2MC {
 		boolean keepShopping = true; // conditional on shopping loop
 		String keepGoing; // whether or not to keep shopping
 
-
 		System.out.println("Welcome to shopping.");
 		System.out
-		.println("For each item, please input the name, price in dollars, and quantity on separate lines.\n");
+				.println("For each item, please input the name, price in dollars, and quantity on separate lines.\n");
 
 		while (keepShopping == true) {
 			// get current item values
 			System.out.print("Please give the name of the item: ");
 			curItemName = scan.nextLine();
-			for (;;) {
+			// for (int i = 0; i < 5; i++) {
+			System.out
+					.print("Please enter the item price in the format xx.xx: $");
+			// try { // test for proper input
+			curItemPrice = scan.nextDouble();
+			// break; // exit loop at proper input
+			// } catch (InputMismatchException e) {
+			// System.out.println("Price entries must be numerical.");
+			// }
+			// }
+			// for (int i = 0; i < 5; i++) {
 				System.out
-				.print("Please enter the item price in the format xx.xx: $");
-				try { // test for proper input
-					curItemPrice = scan.nextDouble();
-					break; // exit loop at proper input
-				} catch (InputMismatchException e) {
-					System.out.println("Price entries must be numerical.");
-				}
-			}
-			for (;;) {
-				System.out
-				.print("Please enter a whole number value for the quantity of the item: ");
-				try { // test for proper input
+						.print("Please enter a whole number value for the quantity of the item: ");
+			// try { // test for proper input
 					curItemQuantity = scan.nextInt();
-					break; // exit loop at proper input
-				} catch (InputMismatchException e) {
-					System.out.println("Quantity entries must be integers.");
-				}
-			}
+			// break; // exit loop at proper input
+			// } catch (InputMismatchException e) {
+			// System.out.println("Quantity entries must be integers.");
+			// }
+			// }
 
 			for (int i = cartLocation; i < curItemQuantity + cartStart; i++) { // for
 				// each
